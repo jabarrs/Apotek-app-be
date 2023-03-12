@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2023 at 09:32 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Mar 12, 2023 at 03:03 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `categoryId` int(11) NOT NULL,
+  `nameCategory` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`categoryId`, `nameCategory`) VALUES
+(1, 'Obat Mual'),
+(2, 'Obat Narkotika'),
+(3, 'Obat Pusing'),
+(5, 'obat bebas terbatas');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `detail_pembelian`
 --
 
@@ -33,7 +54,7 @@ CREATE TABLE `detail_pembelian` (
   `ID_obat` int(11) NOT NULL,
   `jumlah_satuan_obat` int(255) NOT NULL,
   `subtotal` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_pembelian`
@@ -91,7 +112,7 @@ CREATE TABLE `detail_penjualan` (
   `ID_obat` int(11) NOT NULL,
   `jumlah_satuan_obat` int(11) NOT NULL,
   `Subtotal` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_penjualan`
@@ -127,27 +148,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `categoryId` int(11) NOT NULL,
-  `nameCategory` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`categoryId`, `nameCategory`) VALUES
-(1, 'Obat Mual'),
-(2, 'Obat Narkotika'),
-(3, 'Obat Pusing'),
-(5, 'obat bebas terbatas');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `medicene`
 --
 
@@ -163,7 +163,7 @@ CREATE TABLE `medicene` (
   `supplierId` int(11) NOT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `storageId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `medicene`
@@ -184,7 +184,7 @@ CREATE TABLE `pembelian` (
   `total` int(255) NOT NULL,
   `tgl_transaksi` date NOT NULL,
   `ID_users` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pembelian`
@@ -210,7 +210,7 @@ CREATE TABLE `penjualan` (
   `total` int(11) NOT NULL,
   `tgl_transaksi` date NOT NULL,
   `ID_users` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penjualan`
@@ -232,7 +232,7 @@ INSERT INTO `penjualan` (`ID`, `customer`, `total`, `tgl_transaksi`, `ID_users`)
 CREATE TABLE `penyimpanan` (
   `ID` int(11) NOT NULL,
   `Nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penyimpanan`
@@ -261,7 +261,7 @@ CREATE TABLE `profile` (
   `userId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `profile`
@@ -280,7 +280,7 @@ CREATE TABLE `reset_password` (
   `reset_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reset_password`
@@ -288,114 +288,6 @@ CREATE TABLE `reset_password` (
 
 INSERT INTO `reset_password` (`reset_id`, `user_id`, `token`) VALUES
 ('06f1a0e6-c0fe-45c1-9b63-b1af389224ea', '8', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0YnJhbTA4MDdAZ21haWwuY29tIiwiaWF0IjoxNjc0MjEyMjQyLCJleHAiOjE2NzQyMTU4NDJ9.Ze_KIPSItUUX8OA7cmi1S6r_VqIDhLdoVrtEJcdDo_k');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `satuan_obat`
---
-
-CREATE TABLE `satuan_obat` (
-  `ID` int(11) NOT NULL,
-  `Nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `satuan_obat`
---
-
-INSERT INTO `satuan_obat` (`ID`, `Nama`) VALUES
-(1, 'butir'),
-(2, 'botol'),
-(3, 'tablet'),
-(4, 'strip');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `supplier`
---
-
-CREATE TABLE `supplier` (
-  `ID` int(11) NOT NULL,
-  `Nama` varchar(255) NOT NULL,
-  `Alamat` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `supplier`
---
-
-INSERT INTO `supplier` (`ID`, `Nama`, `Alamat`) VALUES
-(1, 'PT. Glaxo Wellcome Indonesia', 'Jalan Merbabu'),
-(2, 'Cendo Indonesia', 'Jalan Merapi'),
-(3, 'PT. Kimia Farma', 'Jalan Semeru');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `refresh_token` text NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `refresh_token`, `createdAt`, `updatedAt`) VALUES
-(1, 'jabar', 'jabar@gmail.com', '$2b$10$qKCVJixzIZr.grvz3pdZreboU3icTL/VaYEn69RBIjC82./5TS56a', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0OTMwNDAzLCJleHAiOjE2NzUwMTY4MDN9.uMWTLkH8julBSTYa7tvFk58gstIgLALV9bccyk3yt38', '2023-01-27 09:30:20', '2023-01-28 18:26:43'),
-(2, 'bram', 'bram@gmail.com', '$2b$10$oA0qvl.lIZivsrqUXaHpcu18H/WY67vT0n0afrCUh6cjoqZPY3vVW', '', '2023-01-28 16:50:23', '2023-01-28 16:50:23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users2`
---
-
-CREATE TABLE `users2` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `NIP` int(11) NOT NULL,
-  `Passwords` varchar(255) NOT NULL,
-  `Role` varchar(255) NOT NULL,
-  `is_verified` smallint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users2`
---
-
-INSERT INTO `users2` (`ID`, `Name`, `Email`, `NIP`, `Passwords`, `Role`, `is_verified`) VALUES
-(1, 'Bram', 'bram@gmail.com', 32312312, '$2a$10$GUtS/ma5rVKlfLfzRL4WKem.euzUDmXMCbKfB9K7YnLEviBCMtKdG', 'user', 0),
-(2, 'Rizky', 'rizky@gmail.com', 22312312, '$2a$10$.PAjlBbamouJkwK0pDoqD.rEuzIhOT0XDHf1CLQnUhXnU38ujnhQu', 'admin', 0),
-(3, 'Zaki', 'zaki@gmail.com', 12312312, '$2a$10$LR/bdjzQIFxTQmE/9uTDruWEUftMZrJe.n.xA5w.QpzcRHBvvFkya', 'superuser', 0),
-(4, 'Agus', 'agus@mail.com', 21234123, '$2a$10$dgZsR9nX.SfrKgSUhGDk/OElhmetNa6vu2I.XydqIuEKqQrIg0Vnu', 'admin', 0),
-(5, 'Jabar', 'jabar@mail.com', 31234123, '$2a$10$tWJme3gzajbwPlnDQpPU1.h4dpiTy1Q3EcS54/pmIaI7eLL9x2dCS', 'user', 0),
-(6, 'Heru', 'heru@gmail.com', 22212312, '$2a$10$JyECawNexhRaWPTp0djUkOHh8rClQ22pAufxMpGiNdAxNc48YlDNC', 'admin', 0),
-(7, 'Fahmi', 'fahmi@gmail.com', 22478920, '$2a$10$pi612/.bogCvmaCjCmIQ5uAlAx5A0CUiHMqdoLqR8Ro4CFs.45oW.', 'admin', 0),
-(8, 'Bram T', 'tbram0807@gmail.com', 2147483647, '$2a$10$CZJ3QaF4KggPUyibxqJUQuM.5D5MxVezt3XAexbN0csU9YVRauvqe', 'admin', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_verification`
---
-
-CREATE TABLE `users_verification` (
-  `verification_id` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -409,6 +301,27 @@ CREATE TABLE `roles` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `satuan_obat`
+--
+
+CREATE TABLE `satuan_obat` (
+  `ID` int(11) NOT NULL,
+  `Nama` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `satuan_obat`
+--
+
+INSERT INTO `satuan_obat` (`ID`, `Nama`) VALUES
+(1, 'butir'),
+(2, 'botol'),
+(3, 'tablet'),
+(4, 'strip');
 
 -- --------------------------------------------------------
 
@@ -447,6 +360,69 @@ CREATE TABLE `statuses` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `ID` int(11) NOT NULL,
+  `Nama` varchar(255) NOT NULL,
+  `Alamat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`ID`, `Nama`, `Alamat`) VALUES
+(1, 'PT. Glaxo Wellcome Indonesia', 'Jalan Merbabu'),
+(2, 'Cendo Indonesia', 'Jalan Merapi'),
+(3, 'PT. Kimia Farma', 'Jalan Semeru');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit`
+--
+
+CREATE TABLE `unit` (
+  `unitId` int(11) NOT NULL,
+  `nameUnit` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit`
+--
+
+INSERT INTO `unit` (`unitId`, `nameUnit`) VALUES
+(23, 'assa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `refresh_token` text NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `refresh_token`, `createdAt`, `updatedAt`) VALUES
+(1, 'jabar', 'jabar@gmail.com', '$2b$10$qKCVJixzIZr.grvz3pdZreboU3icTL/VaYEn69RBIjC82./5TS56a', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0OTMwNDAzLCJleHAiOjE2NzUwMTY4MDN9.uMWTLkH8julBSTYa7tvFk58gstIgLALV9bccyk3yt38', '2023-01-27 09:30:20', '2023-01-28 18:26:43'),
+(2, 'bram', 'bram@gmail.com', '$2b$10$oA0qvl.lIZivsrqUXaHpcu18H/WY67vT0n0afrCUh6cjoqZPY3vVW', '', '2023-01-28 16:50:23', '2023-01-28 16:50:23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -459,9 +435,57 @@ CREATE TABLE `users` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users2`
+--
+
+CREATE TABLE `users2` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `NIP` int(11) NOT NULL,
+  `Passwords` varchar(255) NOT NULL,
+  `Role` varchar(255) NOT NULL,
+  `is_verified` smallint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users2`
+--
+
+INSERT INTO `users2` (`ID`, `Name`, `Email`, `NIP`, `Passwords`, `Role`, `is_verified`) VALUES
+(1, 'Bram', 'bram@gmail.com', 32312312, '$2a$10$GUtS/ma5rVKlfLfzRL4WKem.euzUDmXMCbKfB9K7YnLEviBCMtKdG', 'user', 0),
+(2, 'Rizky', 'rizky@gmail.com', 22312312, '$2a$10$.PAjlBbamouJkwK0pDoqD.rEuzIhOT0XDHf1CLQnUhXnU38ujnhQu', 'admin', 0),
+(3, 'Zaki', 'zaki@gmail.com', 12312312, '$2a$10$LR/bdjzQIFxTQmE/9uTDruWEUftMZrJe.n.xA5w.QpzcRHBvvFkya', 'superuser', 0),
+(4, 'Agus', 'agus@mail.com', 21234123, '$2a$10$dgZsR9nX.SfrKgSUhGDk/OElhmetNa6vu2I.XydqIuEKqQrIg0Vnu', 'admin', 0),
+(5, 'Jabar', 'jabar@mail.com', 31234123, '$2a$10$tWJme3gzajbwPlnDQpPU1.h4dpiTy1Q3EcS54/pmIaI7eLL9x2dCS', 'user', 0),
+(6, 'Heru', 'heru@gmail.com', 22212312, '$2a$10$JyECawNexhRaWPTp0djUkOHh8rClQ22pAufxMpGiNdAxNc48YlDNC', 'admin', 0),
+(7, 'Fahmi', 'fahmi@gmail.com', 22478920, '$2a$10$pi612/.bogCvmaCjCmIQ5uAlAx5A0CUiHMqdoLqR8Ro4CFs.45oW.', 'admin', 0),
+(8, 'Bram T', 'tbram0807@gmail.com', 2147483647, '$2a$10$CZJ3QaF4KggPUyibxqJUQuM.5D5MxVezt3XAexbN0csU9YVRauvqe', 'admin', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_verification`
+--
+
+CREATE TABLE `users_verification` (
+  `verification_id` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`categoryId`);
 
 --
 -- Indexes for table `detail_pembelian`
@@ -480,12 +504,6 @@ ALTER TABLE `detail_penjualan`
   ADD KEY `ID_obat` (`ID_obat`);
 
 --
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`categoryId`);
-
---
 -- Indexes for table `medicene`
 --
 ALTER TABLE `medicene`
@@ -493,7 +511,8 @@ ALTER TABLE `medicene`
   ADD KEY `categoryId` (`categoryId`),
   ADD KEY `unitId` (`unitId`),
   ADD KEY `supplierId` (`storageId`),
-  ADD KEY `storageId` (`storageId`);
+  ADD KEY `storageId` (`storageId`),
+  ADD KEY `obat_ibfk_3` (`supplierId`);
 
 --
 -- Indexes for table `pembelian`
@@ -541,6 +560,12 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `unit`
+--
+ALTER TABLE `unit`
+  ADD PRIMARY KEY (`unitId`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -567,6 +592,12 @@ ALTER TABLE `users_verification`
 --
 ALTER TABLE `profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `unit`
+--
+ALTER TABLE `unit`
+  MODIFY `unitId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`
