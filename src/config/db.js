@@ -7,4 +7,9 @@ const koneksi = mysql.createConnection({
   multipleStatements: true,
 });
 
+koneksi.query("SELECT 1", function (error) {
+  if (error) throw error;
+  console.log("Database is connected");
+});
+
 module.exports = koneksi;
