@@ -32,10 +32,10 @@ const getDetailCategory = (categoryId, nameCategory, sorting) => {
   );
 };
 
-const newCreateCategory = (categoryId, nameCategory) => {
+const newCreateCategory = (nameCategory) => {
   return new Promise((resolve, reject) =>
     koneksi.query(
-      `INSERT INTO category (categoryId,nameCategory) VALUES (${categoryId},'${nameCategory}')`,
+      `INSERT INTO category (nameCategory) VALUES ('${nameCategory}')`,
 
       (error, result) => {
         if (!error) {

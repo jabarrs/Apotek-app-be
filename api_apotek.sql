@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2023 at 03:03 PM
+-- Generation Time: Mar 12, 2023 at 05:49 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,10 +37,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`categoryId`, `nameCategory`) VALUES
-(1, 'Obat Mual'),
-(2, 'Obat Narkotika'),
-(3, 'Obat Pusing'),
-(5, 'obat bebas terbatas');
+(1, 'Obat sakau');
 
 -- --------------------------------------------------------
 
@@ -55,34 +52,6 @@ CREATE TABLE `detail_pembelian` (
   `jumlah_satuan_obat` int(255) NOT NULL,
   `subtotal` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `detail_pembelian`
---
-
-INSERT INTO `detail_pembelian` (`ID`, `ID_pembelian`, `ID_obat`, `jumlah_satuan_obat`, `subtotal`) VALUES
-(1, 1, 2, 2, 24000),
-(2, 1, 1, 3, 24000),
-(3, 1, 1, 3, 24000),
-(4, 2, 1, 5, 25000),
-(5, 2, 2, 3, 24000),
-(6, 2, 1, 1, 5000),
-(7, 3, 2, 1, 8000),
-(8, 2, 1, 5, 25000),
-(9, 2, 2, 3, 24000),
-(10, 2, 1, 5, 25000),
-(11, 2, 2, 2, 16000),
-(12, 4, 1, 5, 25000),
-(13, 4, 2, 2, 16000),
-(14, 4, 1, 5, 25000),
-(15, 4, 2, 2, 16000),
-(16, 4, 1, 5, 25000),
-(17, 4, 2, 2, 16000),
-(18, 4, 1, 5, 25000),
-(19, 4, 2, 2, 16000),
-(20, 4, 1, 5, 25000),
-(21, 5, 1, 3, 15000),
-(22, 5, 2, 2, 16000);
 
 --
 -- Triggers `detail_pembelian`
@@ -113,21 +82,6 @@ CREATE TABLE `detail_penjualan` (
   `jumlah_satuan_obat` int(11) NOT NULL,
   `Subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `detail_penjualan`
---
-
-INSERT INTO `detail_penjualan` (`ID`, `ID_penjualan`, `ID_obat`, `jumlah_satuan_obat`, `Subtotal`) VALUES
-(1, 1, 2, 4, 48000),
-(2, 2, 2, 1, 12000),
-(3, 2, 1, 16, 128000),
-(4, 3, 1, 3, 24000),
-(5, 3, 2, 2, 24000),
-(6, 4, 1, 3, 24000),
-(7, 4, 2, 2, 24000),
-(8, 5, 1, 3, 24000),
-(9, 5, 2, 2, 24000);
 
 --
 -- Triggers `detail_penjualan`
@@ -170,8 +124,7 @@ CREATE TABLE `medicene` (
 --
 
 INSERT INTO `medicene` (`idMedicene`, `namaObat`, `categoryId`, `stock`, `unitId`, `tglKadeluarsa`, `hargaJual`, `hargaBeli`, `supplierId`, `keterangan`, `storageId`) VALUES
-(1, 'Panadol', 2, 1031, 4, '2022-12-28', 8000, 5000, 2, 'obat flu generik', 2),
-(2, 'Paracetamol', 1, 121, 2, '2022-12-29', 12000, 8000, 3, 'Obat demam', 1);
+(3, 'paramex', 1, 90, 23, '2023-12-17', 9000, 7000, 3, 'Obat pusying', 1);
 
 -- --------------------------------------------------------
 
@@ -292,74 +245,6 @@ INSERT INTO `reset_password` (`reset_id`, `user_id`, `token`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
---
-
-CREATE TABLE `roles` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `satuan_obat`
---
-
-CREATE TABLE `satuan_obat` (
-  `ID` int(11) NOT NULL,
-  `Nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `satuan_obat`
---
-
-INSERT INTO `satuan_obat` (`ID`, `Nama`) VALUES
-(1, 'butir'),
-(2, 'botol'),
-(3, 'tablet'),
-(4, 'strip');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sequelizemeta`
---
-
-CREATE TABLE `sequelizemeta` (
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `sequelizemeta`
---
-
-INSERT INTO `sequelizemeta` (`name`) VALUES
-('20230312031516-create-user.js'),
-('20230312031619-create-role.js'),
-('20230312031821-create-status.js');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `statuses`
---
-
-CREATE TABLE `statuses` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `body` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `supplier`
 --
 
@@ -419,21 +304,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `refresh_token`, `createdAt`, `updatedAt`) VALUES
 (1, 'jabar', 'jabar@gmail.com', '$2b$10$qKCVJixzIZr.grvz3pdZreboU3icTL/VaYEn69RBIjC82./5TS56a', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0OTMwNDAzLCJleHAiOjE2NzUwMTY4MDN9.uMWTLkH8julBSTYa7tvFk58gstIgLALV9bccyk3yt38', '2023-01-27 09:30:20', '2023-01-28 18:26:43'),
 (2, 'bram', 'bram@gmail.com', '$2b$10$oA0qvl.lIZivsrqUXaHpcu18H/WY67vT0n0afrCUh6cjoqZPY3vVW', '', '2023-01-28 16:50:23', '2023-01-28 16:50:23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -548,12 +418,6 @@ ALTER TABLE `reset_password`
   ADD PRIMARY KEY (`reset_id`);
 
 --
--- Indexes for table `satuan_obat`
---
-ALTER TABLE `satuan_obat`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -588,6 +452,30 @@ ALTER TABLE `users_verification`
 --
 
 --
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `detail_pembelian`
+--
+ALTER TABLE `detail_pembelian`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `medicene`
+--
+ALTER TABLE `medicene`
+  MODIFY `idMedicene` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
@@ -613,30 +501,30 @@ ALTER TABLE `user`
 -- Constraints for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  ADD CONSTRAINT `detail_pembelian_ibfk_1` FOREIGN KEY (`ID_pembelian`) REFERENCES `pembelian` (`ID`),
-  ADD CONSTRAINT `detail_pembelian_ibfk_2` FOREIGN KEY (`ID_obat`) REFERENCES `medicene` (`idMedicene`);
+  ADD CONSTRAINT `detail_pembelian_ibfk_1` FOREIGN KEY (`ID_pembelian`) REFERENCES `pembelian` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_pembelian_ibfk_2` FOREIGN KEY (`ID_obat`) REFERENCES `medicene` (`idMedicene`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  ADD CONSTRAINT `detail_penjualan_ibfk_1` FOREIGN KEY (`ID_penjualan`) REFERENCES `penjualan` (`ID`),
-  ADD CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`ID_obat`) REFERENCES `medicene` (`idMedicene`);
+  ADD CONSTRAINT `detail_penjualan_ibfk_1` FOREIGN KEY (`ID_penjualan`) REFERENCES `penjualan` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`ID_obat`) REFERENCES `medicene` (`idMedicene`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `medicene`
 --
 ALTER TABLE `medicene`
-  ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
-  ADD CONSTRAINT `obat_ibfk_2` FOREIGN KEY (`unitId`) REFERENCES `satuan_obat` (`ID`),
-  ADD CONSTRAINT `obat_ibfk_3` FOREIGN KEY (`supplierId`) REFERENCES `supplier` (`ID`),
-  ADD CONSTRAINT `obat_ibfk_4` FOREIGN KEY (`storageId`) REFERENCES `penyimpanan` (`ID`);
+  ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_ibfk_2` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_ibfk_3` FOREIGN KEY (`supplierId`) REFERENCES `supplier` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_ibfk_4` FOREIGN KEY (`storageId`) REFERENCES `penyimpanan` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  ADD CONSTRAINT `pembelian_ibfk_1` FOREIGN KEY (`ID_users`) REFERENCES `users2` (`ID`);
+  ADD CONSTRAINT `pembelian_ibfk_1` FOREIGN KEY (`ID_users`) REFERENCES `users2` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `penjualan`

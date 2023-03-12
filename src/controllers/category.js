@@ -51,8 +51,8 @@ const controller = {
   },
   createCategory: async function (req, res) {
     try {
-      const { categoryId, nameCategory } = req.body;
-      let category = await newCreateCategory(categoryId, nameCategory);
+      const { nameCategory } = req.body;
+      let category = await newCreateCategory(nameCategory);
       res.json({
         status: 201,
         message: 'Create Data Category Success !',

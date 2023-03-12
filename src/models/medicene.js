@@ -94,10 +94,10 @@ const getDetailMediceneByStorageId = (storageId) => {
     })
   );
 };
-const newCreateMedicene = (idMedicene, namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan) => {
+const newCreateMedicene = (namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan) => {
   return new Promise((resolve, reject) =>
     koneksi.query(
-      `INSERT INTO medicene (idMedicene,namaObat,categoryId,stock,unitId,storageId,tglKadeluarsa,hargaBeli,supplierId,hargaJual,keterangan) VALUES (${idMedicene},'${namaObat}',${categoryId},${stock},${unitId},${storageId},${tglKadeluarsa},${hargaBeli},${supplierId},${hargaJual},'${keterangan}')`,
+      `INSERT INTO medicene (namaObat,categoryId,stock,unitId,storageId,tglKadeluarsa,hargaBeli,supplierId,hargaJual,keterangan) VALUES ('${namaObat}',${categoryId},${stock},${unitId},${storageId},'${tglKadeluarsa}',${hargaBeli},${supplierId},${hargaJual},'${keterangan}')`,
 
       (error, result) => {
         if (!error) {
@@ -113,7 +113,7 @@ const newCreateMedicene = (idMedicene, namaObat, categoryId, stock, unitId, stor
 const getUpdateMedicene = (namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan, idMedicene) => {
   return new Promise((resolve, reject) =>
     koneksi.query(
-      `UPDATE medicene SET namaObat ='${namaObat}', categoryId = ${categoryId}, stock = ${stock},unitId= ${unitId}, storageId = ${storageId}, tglKadeluarsa = ${tglKadeluarsa},hargaBeli=${hargaBeli},supplierId = ${supplierId},hargaJual =${hargaJual},keterangan='${keterangan}'WHERE idMedicene = ${idMedicene}`,
+      `UPDATE medicene SET namaObat ='${namaObat}', categoryId = ${categoryId}, stock = ${stock},unitId= ${unitId}, storageId = ${storageId}, tglKadeluarsa = '${tglKadeluarsa}',hargaBeli=${hargaBeli},supplierId = ${supplierId},hargaJual =${hargaJual},keterangan='${keterangan}'WHERE idMedicene = ${idMedicene}`,
 
       (error, result) => {
         if (!error) {

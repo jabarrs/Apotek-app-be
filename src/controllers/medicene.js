@@ -211,8 +211,8 @@ const controller = {
   },
   createMedicene: async function (req, res) {
     try {
-      const { idMedicene, namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan } = req.body;
-      let medicene = await newCreateMedicene(idMedicene, namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan);
+      const { namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan } = req.body;
+      let medicene = await newCreateMedicene(namaObat, categoryId, stock, unitId, storageId, tglKadeluarsa, hargaBeli, supplierId, hargaJual, keterangan);
       res.json({
         status: 201,
         message: 'Create Data Medicene Success !',
