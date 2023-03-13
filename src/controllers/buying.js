@@ -134,8 +134,6 @@ const buyingController = {
   insertBuyingAndDetail: async (req, res) => {
     // Mengambil input dari req.body dan membuat variabel untuk result (hasil)
     const {
-      buyingId,
-      detailBuyingId,
       detailMedicines,
       transactionDate,
       userId,
@@ -147,8 +145,6 @@ const buyingController = {
 
     try {
       // Verifikasi kelengkapan data untuk diinsert ke tabel
-      if (!detailBuyingId) inputError.push("detailBuyingId not found!");
-      if (!buyingId) inputError.push("buyingId not found!");
       if (!detailMedicines) inputError.push("detailMedicines not found!");
       if (!transactionDate) inputError.push("transactionDate not found!");
       if (!userId) inputError.push("userId not found!");
@@ -162,12 +158,13 @@ const buyingController = {
         );
 
       // Menjalankan fungsi untuk melakukan insert di tabel pembelian dan detail_pembelian
-      resultBuying = await insertBuying(buyingId, transactionDate, userId);
+      resultBuying = await insertBuying(transactionDate, userId);
       if (resultBuying) {
         result = { ...result, buyingInsertedRows: resultBuying.affectedRows };
       }
+      
+      const buyingId = resultBuying.insertId;
       resultDetailBuying = await insertDetailBuying(
-        detailBuyingId,
         buyingId,
         detailMedicines
       );

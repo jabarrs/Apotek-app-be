@@ -186,8 +186,6 @@ const sellingController = {
   insertSellingAndDetail: async (req, res) => {
     // Mengambil input dari req.body dan membuat variabel untuk result (hasil)
     const {
-      sellingId,
-      detailSellingId,
       detailMedicines,
       transactionDate,
       userId,
@@ -200,8 +198,6 @@ const sellingController = {
 
     try {
       // Verifikasi kelengkapan data untuk diinsert ke tabel
-      if (!detailSellingId) errorInput.push("detailSellingID not Found!");
-      if (!sellingId) errorInput.push("sellingID not Found!");
       if (!detailMedicines) errorInput.push("detailMedicines not Found!");
       if (!transactionDate) errorInput.push("transactionDate not Found!");
       if (!userId) errorInput.push("userId not Found!");
@@ -217,7 +213,6 @@ const sellingController = {
 
       // Menjalankan fungsi untuk melakukan insert di tabel penjualan dan detail_penjualan
       resultSelling = await insertSelling(
-        sellingId,
         customer,
         transactionDate,
         userId
@@ -225,9 +220,8 @@ const sellingController = {
       if (resultSelling) {
         result = { ...result, sellingInsertedRows: resultSelling.affectedRows };
       }
-      console.log(resultSelling);
+      const sellingId = resultSelling.insertId;
       resultDetailSelling = await insertDetailSelling(
-        detailSellingId,
         sellingId,
         detailMedicines
       );

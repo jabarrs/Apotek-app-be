@@ -3,10 +3,10 @@ const pool = require("../config/db");
 const selectAllDetailBuying = (limit, offset, orderby, order) => {
   return new Promise((resolve, reject) =>
     pool.query(
-      `SELECT detail_pembelian.ID, obat.nama, detail_pembelian.jumlah_satuan_obat, detail_pembelian.Subtotal, detail_pembelian.ID_pembelian, (SELECT SUM(detail_pembelian.Subtotal) AS harga_total FROM detail_pembelian) AS harga_total, pembelian.tgl_transaksi
+      `SELECT detail_pembelian.ID, medicene.namaObat, detail_pembelian.jumlah_satuan_obat, detail_pembelian.Subtotal, detail_pembelian.ID_pembelian, (SELECT SUM(detail_pembelian.Subtotal) AS harga_total FROM detail_pembelian) AS harga_total, pembelian.tgl_transaksi
       FROM detail_pembelian
       JOIN obat
-      ON detail_pembelian.ID_obat = obat.ID
+      ON detail_pembelian.ID_obat = medicene.idMedicene
       JOIN pembelian
       ON detail_pembelian.ID_pembelian = pembelian.ID
       ORDER BY ${orderby} ${order} LIMIT ${limit} OFFSET ${offset}`,
@@ -40,9 +40,9 @@ const selectAllBuying = (limit, offset, orderby, order) => {
 const selectAllBuyingById = (id, orderby, order) => {
   return new Promise((resolve, reject) =>
     pool.query(
-      `SELECT detail_pembelian.ID AS id_detail_pembelian, obat.ID AS id_obat, obat.Nama as obat, detail_pembelian.jumlah_satuan_obat, detail_pembelian.subtotal, pembelian.total FROM detail_pembelian
+      `SELECT detail_pembelian.ID AS id_detail_pembelian, medicene.idMedicene, medicene.namaObat, detail_pembelian.jumlah_satuan_obat, detail_pembelian.subtotal, pembelian.total FROM detail_pembelian
       JOIN obat
-      ON detail_pembelian.ID_obat = obat.ID
+      ON detail_pembelian.ID_obat = medicene.idMedicene
       JOIN pembelian
       ON detail_pembelian.ID_pembelian = pembelian.ID
       WHERE pembelian.ID=${id}
@@ -88,11 +88,11 @@ const countAllDetailBuying = () => {
   );
 };
 
-const insertBuying = (buyingId, transactionDate, userId) => {
+const insertBuying = (transactionDate, userId) => {
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO pembelian (ID, total, tgl_transaksi, ID_users)
-      VALUES (${buyingId}, 0, '${transactionDate}', ${userId})`,
+      `INSERT INTO pembelian (total, tgl_transaksi, ID_users)
+      VALUES (0, '${transactionDate}', ${userId})`,
       (error, result) => {
         if (!error) {
           resolve(result);
@@ -119,21 +119,21 @@ const deleteBuying = (buyingId) => {
   );
 };
 
-const insertDetailBuying = (detailBuyingId, buyingId, detailMedicines) => {
+const insertDetailBuying = (buyingId, detailMedicines) => {
   let subtotalQuery = ``;
-  let firstMedicineQuery = `INSERT INTO detail_pembelian(ID, ID_pembelian, ID_obat, jumlah_satuan_obat, subtotal)
-  VALUES (${detailBuyingId}, ${buyingId}, ${detailMedicines[0].id}, ${detailMedicines[0].qty}, @harga_subtotal_0)`;
+  let firstMedicineQuery = `INSERT INTO detail_pembelian(ID_pembelian, ID_obat, jumlah_satuan_obat, subtotal)
+  VALUES (${buyingId}, ${detailMedicines[0].id}, ${detailMedicines[0].qty}, @harga_subtotal_0)`;
   let secondMedicineQuery = ``;
   let insertQuery = ``;
 
   for (let i = 0; i < detailMedicines.length; i++) {
-    subtotalQuery += `SET @harga_subtotal_${i}=((SELECT harga_beli FROM obat WHERE obat.ID=${detailMedicines[i].id})*${detailMedicines[i].qty});
+    subtotalQuery += `SET @harga_subtotal_${i}=((SELECT hargaBeli FROM medicene WHERE medicene.idMedicene=${detailMedicines[i].id})*${detailMedicines[i].qty});
     `;
   }
 
   if (detailMedicines.length > 1) {
     for (let i = 1; i < detailMedicines.length; i++) {
-      secondMedicineQuery += `,(${detailBuyingId + i}, ${buyingId}, ${
+      secondMedicineQuery += `,(${buyingId}, ${
         detailMedicines[i].id
       }, ${detailMedicines[i].qty}, @harga_subtotal_${i})`;
     }
