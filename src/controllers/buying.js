@@ -135,7 +135,6 @@ const buyingController = {
     // Mengambil input dari req.body dan membuat variabel untuk result (hasil)
     const {
       detailMedicines,
-      transactionDate,
       userId,
     } = req.body;
     let resultBuying = {};
@@ -146,7 +145,6 @@ const buyingController = {
     try {
       // Verifikasi kelengkapan data untuk diinsert ke tabel
       if (!detailMedicines) inputError.push("detailMedicines not found!");
-      if (!transactionDate) inputError.push("transactionDate not found!");
       if (!userId) inputError.push("userId not found!");
 
       if (inputError.length > 0)
@@ -158,11 +156,12 @@ const buyingController = {
         );
 
       // Menjalankan fungsi untuk melakukan insert di tabel pembelian dan detail_pembelian
+      const transactionDate = new Date().toISOString();
       resultBuying = await insertBuying(transactionDate, userId);
       if (resultBuying) {
         result = { ...result, buyingInsertedRows: resultBuying.affectedRows };
       }
-      
+
       const buyingId = resultBuying.insertId;
       resultDetailBuying = await insertDetailBuying(
         buyingId,

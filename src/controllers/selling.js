@@ -187,7 +187,6 @@ const sellingController = {
     // Mengambil input dari req.body dan membuat variabel untuk result (hasil)
     const {
       detailMedicines,
-      transactionDate,
       userId,
     } = req.body;
     const customer = req.body.customer || "anonim";
@@ -199,7 +198,6 @@ const sellingController = {
     try {
       // Verifikasi kelengkapan data untuk diinsert ke tabel
       if (!detailMedicines) errorInput.push("detailMedicines not Found!");
-      if (!transactionDate) errorInput.push("transactionDate not Found!");
       if (!userId) errorInput.push("userId not Found!");
       if (!customer) errorInput.push("customer not Found!");
 
@@ -212,6 +210,7 @@ const sellingController = {
         );
 
       // Menjalankan fungsi untuk melakukan insert di tabel penjualan dan detail_penjualan
+      const transactionDate = new Date().toISOString();
       resultSelling = await insertSelling(
         customer,
         transactionDate,

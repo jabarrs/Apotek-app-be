@@ -1,0 +1,929 @@
+{
+	"info": {
+		"_postman_id": "4e365829-c71b-4d1b-ac70-ac5f750f1435",
+		"name": "apotek",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15820714"
+	},
+	"item": [
+		{
+			"name": "medicene",
+			"item": [
+				{
+					"name": "all medicene",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/medicene",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"medicene"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail medicene",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "categoryId",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/medicene/storageIdMedicene/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"medicene",
+								"storageIdMedicene",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create medicene",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namaObat\": \"Tramadol\",\r\n    \"categoryId\": \"2\",\r\n    \"stock\": \"90\",\r\n    \"unitId\": \"23\",\r\n    \"storageId\": \"1\",\r\n    \"tglKadeluarsa\": \"2023-11-17\",\r\n    \"hargaBeli\": \"7000\",\r\n    \"supplierId\": \"3\",\r\n    \"hargaJual\": \"9000\",\r\n    \"keterangan\": \"Obat kuat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/medicene/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"medicene",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete medicene",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/medicene/90",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"medicene",
+								"90"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update medicene",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namaObat\": \"abcde\",\r\n    \"categoryId\": \"3\",\r\n    \"stock\": \"90\",\r\n    \"unitId\": \"4\",\r\n    \"storageId\": \"20\",\r\n    \"tglKadeluarsa\": \"2023-11-18\",\r\n    \"hargaBeli\": \"7000\",\r\n    \"supplierId\": \"3\",\r\n    \"hargaJual\": \"9000\",\r\n    \"keterangan\": \"Obat kuat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/medicene/90",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"medicene",
+								"90"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "all category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/category/?categoryId=&nameCategory=&sorting=desc",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"category",
+								""
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": ""
+								},
+								{
+									"key": "nameCategory",
+									"value": ""
+								},
+								{
+									"key": "sorting",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/category?categoryId=1&nameCategory=mual",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"category"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								},
+								{
+									"key": "nameCategory",
+									"value": "mual"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameCategory\": \"Obat kuat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/category/",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/category/4",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameCategory\": \"Obat Pusing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/category/3",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inpha2lAZ21haWwuY29tIiwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTY3MjY4MjAxNiwiZXhwIjoxNjcyNjgyOTE2fQ.7VyXMIhqSqKoay_Yh5PxDg0MmJEFs_In9xdDJ74WgtI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"name\": \"Bram A\",\r\n    \"email\": \"jabaw53@gmail.com\",\r\n    \"nip\": 3241252232,\r\n    \"password\": \"bram123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/users/register",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jabaw53@gmail.com\",\r\n    \"password\": \"bram123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/users/login",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpemt5QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2OTAwOTIzOCwiZXhwIjoxNjY5MDk1NjM4fQ.RRISSId2Lg26WbOgPVODV3utSYJXL4399BiQ3b6HvCI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/users/refresh-token",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inpha2lAZ21haWwuY29tIiwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTY3MjY4MjAxNiwiZXhwIjoxNjcyNjgyOTE2fQ.7VyXMIhqSqKoay_Yh5PxDg0MmJEFs_In9xdDJ74WgtI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/users/list?limit=10&page=1&order=asc&orderby=id",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"list"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								},
+								{
+									"key": "orderby",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/users/verify/10/fcb3a9cd6d850ba601b89a1268c9082d6340d643a38729a1b5164fd1dd782571fa27c20abc205bbb569e566c935e2534714844177a6015924e1e042aa2d4a86d",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"verify",
+								"10",
+								"fcb3a9cd6d850ba601b89a1268c9082d6340d643a38729a1b5164fd1dd782571fa27c20abc205bbb569e566c935e2534714844177a6015924e1e042aa2d4a86d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tbram0807@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/users/forgot-password",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password (Confirmation)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "selling",
+			"item": [
+				{
+					"name": "list selling",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/selling/list-selling?startDate=2022-11-22",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"selling",
+								"list-selling"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2022-11-22"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-11-21",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "ASC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list selling by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/selling/list-selling/2",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"selling",
+								"list-selling",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list detail selling",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/selling/list-detail",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"selling",
+								"list-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert selling",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer\": \"Jabar\",\r\n    \"detailMedicines\": [{\"id\": 3, \"qty\": 3}],\r\n    \"userId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/selling/insert",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"selling",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "buying",
+			"item": [
+				{
+					"name": "list buying",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJyYW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjkwMTQyNTksImV4cCI6MTY2OTAxNTE1OX0.E2-ERPj7NMlk83pdiJ2XR6OlA-eWV9dsFv5p0aNEChY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/buying/list-buying",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"buying",
+								"list-buying"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list buying by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJyYW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjkwMTQyNTksImV4cCI6MTY2OTAxNTE1OX0.E2-ERPj7NMlk83pdiJ2XR6OlA-eWV9dsFv5p0aNEChY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/buying/list-buying/2",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"buying",
+								"list-buying",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list detail buying",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJyYW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjkwMTQyNTksImV4cCI6MTY2OTAxNTE1OX0.E2-ERPj7NMlk83pdiJ2XR6OlA-eWV9dsFv5p0aNEChY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/buying/list-detail",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"buying",
+								"list-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert buying",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"detailMedicines\": [{\"id\": 3, \"qty\": 2}],\r\n    \"userId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/buying/insert",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"buying",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "supplier",
+			"item": [
+				{
+					"name": "supplier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/supplier",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Supplier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nama\" : \"agus\",\r\n    \"Alamat\": \"riau\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/supplier",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update supplier",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nama\" : \"Agus\",\r\n    \"Alamat\": \"Riau\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/supplier/1",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Supplier",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/supplier/1",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "unit",
+			"item": [
+				{
+					"name": "unit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/unit",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"unit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Unit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameUnit\": \"botol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_apotek}}/api/unit",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"unit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Unit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/unit/1",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"unit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Unit",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_apotek}}/api/unit/1",
+							"host": [
+								"{{local_apotek}}"
+							],
+							"path": [
+								"api",
+								"unit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
